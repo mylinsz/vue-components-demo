@@ -1,3 +1,5 @@
+# 该项目主要介绍 Vue 组件 相关知识
+
 # 创建文件夹
 ```
 mkdir component_demo
