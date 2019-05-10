@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>组件基础-基本示例（* 页面可以直接用浏览器打开查看渲染结果）</title>
+        <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    </head>
+
+    <body>
+        <div id="components-demo">
+            <buttoncounter></buttoncounter>
+        </div>
+
+        <script>
+
+            /*
+            为了能在模板中使用，这些组件必须先注册以便 Vue 能够识别。这里有两种组件的注册类型：全局注册和局部注册。
+            至此，我们的组件都只是通过 Vue.component 全局注册的：
+
+            Vue.component('my-component-name', {
+            // ... options ...
+            })
+            全局注册的组件可以用在其被注册之后的任何 (通过 new Vue) 新创建的 Vue 根实例，也包括其组件树中的所有子组件的模板中。
+
+            到目前为止，关于组件注册你需要了解的就这些了，如果你阅读完本页内容并掌握了它的内容，我们会推荐你再回来把组件注册读完。
+            */
+
+            // 定义一个名为 buttoncounter 的新组件（全局注册）
+            // 注册组件时名称不能用大写，不然会报错，原因是：直接在 DOM (即非字符串的模板) 中使用时只有 kebab-case 是有效的。
+            Vue.component('buttoncounter', {
+                data() {
+                    return {
+                        count: 0
+                    }
+                },
+                template: '<button v-on:click="count++">You clicked me {{ count }} times.</button>'
+            })
+
+            new Vue({ el: '#components-demo' })
+
+            /*
+            组件名大小写
+            定义组件名的方式有两种：
+
+            使用 kebab-case
+            Vue.component('my-component-name', { ... })
+            当使用 kebab-case (短横线分隔命名) 定义一个组件时，你也必须在引用这个自定义元素时使用 kebab-case，例如 <my-component-name>。
+
+            使用 PascalCase
+            Vue.component('MyComponentName', { ... })
+            当使用 PascalCase (首字母大写命名) 定义一个组件时，你在引用这个自定义元素时两种命名法都可以使用。
+            也就是说 <my-component-name> 和 <MyComponentName> 都是可接受的。
+            *****注意，尽管如此，直接在 DOM (即非字符串的模板) 中使用时只有 kebab-case 是有效的。
+            */
+
+        </script>
+    </body>
+</html>
